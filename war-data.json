@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-03-13 16:10 ET",
+    "lastUpdated": "2026-03-13T16:20:00-04:00",
     "notes": [
       "This dashboard is updated manually by replacing war-data.json.",
       "Daily launch charts extend through Mar 13, but unknown daily values after the last defensible full series are left blank rather than invented.",

@@ -56,10 +56,15 @@
     .pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;background:rgba(255,255,255,.03)}
     .missile{color:var(--red)} .drone{color:var(--orange)}
     .tag{display:inline-block;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:800}
-    .good{background:rgba(70,215,176,.14);color:var(--cyan)} .warn{background:rgba(255,209,102,.14);color:var(--gold)} .bad{background:rgba(255,107,107,.14);color:var(--red)}
+    .good{background:rgba(70,215,176,.14);color:var(--cyan)}
+    .warn{background:rgba(255,209,102,.14);color:var(--gold)}
+    .bad{background:rgba(255,107,107,.14);color:var(--red)}
     .scenario{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--border);border-radius:16px;margin-bottom:10px;background:rgba(255,255,255,.02)}
-    .scenario strong{display:block;margin-bottom:4px} .scenario .prob{font-size:22px;font-weight:900;color:var(--gold);white-space:nowrap}
-    .biz-section{margin-top:14px} .biz-section h4{margin:0 0 8px;font-size:13px;color:var(--gold);letter-spacing:.4px;text-transform:uppercase}
+    .scenario strong{display:block;margin-bottom:4px}
+    .scenario .prob{font-size:22px;font-weight:900;color:var(--gold);white-space:nowrap}
+    .biz-section{margin-top:14px}
+    .biz-section h4{margin:0 0 8px;font-size:13px;color:var(--gold);letter-spacing:.4px;text-transform:uppercase}
+    code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px}
     @media(max-width:1180px){.hero,.cols-2,.cols-3{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:700px){.metric-grid{grid-template-columns:1fr}.title h1{font-size:19px}}
   </style>
@@ -69,7 +74,7 @@
     <div class="topbar-inner">
       <div class="title">
         <h1>Iran War Dashboard</h1>
-        <p>Daily tempo, target spread, oil shock, and business impact. Manual update model: replace <code>war-data.json</code>, push, redeploy. The page is fully driven by the JSON file.</p>
+        <p>Daily tempo, target spread, oil shock, and business impact. Manual update model: replace <code>war-data.json</code>, push, redeploy. The page pulls all variable content from the latest JSON file.</p>
       </div>
       <div class="chips">
         <div class="chip">Last data update: <strong id="lastUpdated">—</strong></div>
@@ -114,7 +119,7 @@
         <h3>Combined launch tempo</h3>
         <div class="sub">Lets you see whether missiles and drones are collapsing together or diverging.</div>
         <div class="chart-box tall"><canvas id="comboChart"></canvas></div>
-        <div class="footnote">Trend lines are descriptive, not predictive.</div>
+        <div class="footnote">Trend lines are descriptive and stop at the last real data point.</div>
       </div>
       <div class="panel">
         <h3>Oil shock monitor</h3>
@@ -209,8 +214,7 @@
       dailySeries:{labels:[],missiles:[],drones:[],sourceLabel:"",throughDate:""},
       oil:{labels:[],brent:[],wti:[],note:""}, latestTargetBreakdown:{note:"",missiles:{},drones:{}},
       pressure:{labels:[],attrition:[],cost:[]}, dailyRows:[], timeline:[], endstate:[],
-      impactIranfarhang:[], prepIranfarhang:[], signalsIranfarhang:[],
-      impactKIP:[], prepKIP:[], signalsKIP:[]
+      impactIranfarhang:[], prepIranfarhang:[], signalsIranfarhang:[], impactKIP:[], prepKIP:[], signalsKIP:[]
     };
 
     let state = structuredClone(DEFAULT_DATA);
@@ -228,37 +232,61 @@
       }
     };
 
-    function linearTrend(values){
-      const clean = values.map((v,i)=>({x:i,y:Number.isFinite(v)?v:null})).filter(p=>p.y!==null);
-      if (clean.length < 2) return values.map(()=>null);
-      const n = clean.length;
-      const xMean = clean.reduce((a,b)=>a+b.x,0)/n;
-      const yMean = clean.reduce((a,b)=>a+b.y,0)/n;
-      let numerator = 0, denominator = 0;
-      for (const p of clean){ numerator += (p.x-xMean)*(p.y-yMean); denominator += (p.x-xMean)**2; }
-      const m = denominator ? numerator/denominator : 0;
-      const b = yMean - m*xMean;
-      return values.map((_,i)=> +(m*i+b).toFixed(1));
+    function toFiniteOrNull(value){
+      return Number.isFinite(value) ? value : null;
+    }
+
+    function lastRealIndex(values){
+      for (let i = values.length - 1; i >= 0; i--) {
+        if (Number.isFinite(values[i])) return i;
+      }
+      return -1;
+    }
+
+    function trendLineUpToLastReal(values){
+      const end = lastRealIndex(values);
+      if (end < 1) return values.map(() => null);
+      const slice = values.slice(0, end + 1).map((v, i) => ({ x: i, y: Number.isFinite(v) ? v : null })).filter(p => p.y !== null);
+      if (slice.length < 2) return values.map(() => null);
+
+      const n = slice.length;
+      const xMean = slice.reduce((a, b) => a + b.x, 0) / n;
+      const yMean = slice.reduce((a, b) => a + b.y, 0) / n;
+      let numerator = 0;
+      let denominator = 0;
+      for (const p of slice) {
+        numerator += (p.x - xMean) * (p.y - yMean);
+        denominator += (p.x - xMean) ** 2;
+      }
+      const m = denominator ? numerator / denominator : 0;
+      const b = yMean - m * xMean;
+
+      return values.map((_, i) => {
+        if (i > end) return null;
+        return +(m * i + b).toFixed(1);
+      });
     }
 
     function computeFreshness(lastUpdatedText){
-      const parsed = Date.parse(String(lastUpdatedText).replace(' ET',' GMT-0400'));
+      const parsed = Date.parse(String(lastUpdatedText));
       if (Number.isNaN(parsed)) return {label:'Check timestamp',cls:'warn'};
-      const hours = (Date.now()-parsed)/36e5;
+      const hours = (Date.now() - parsed) / 36e5;
       if (hours <= 12) return {label:'Current-ish',cls:'good'};
       if (hours <= 48) return {label:'Aging',cls:'warn'};
       return {label:'Stale',cls:'bad'};
     }
 
     function parseLogDate(dateText){
+      if (!dateText) return new Date(0);
+      if (/^\d{4}-\d{2}-\d{2}/.test(dateText)) return new Date(dateText);
       const months = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
-      const parts = String(dateText || '').trim().split(/\s+/);
+      const parts = String(dateText).trim().split(/\s+/);
       if (parts.length < 2 || !(parts[0] in months)) return new Date(0);
-      return new Date(2026, months[parts[0]], parseInt(parts[1],10)||1);
+      return new Date(2026, months[parts[0]], parseInt(parts[1],10) || 1);
     }
 
     function kill(name){ if (charts[name]) charts[name].destroy(); }
-    function renderList(id, arr){ document.getElementById(id).innerHTML = (arr||[]).map(item=>`<li>${item}</li>`).join(''); }
+    function renderList(id, arr){ document.getElementById(id).innerHTML = (arr || []).map(item => `<li>${item}</li>`).join(''); }
 
     function setText(){
       document.getElementById('lastUpdated').textContent = state.meta.lastUpdated || '—';
@@ -266,7 +294,7 @@
       document.getElementById('freshnessStatus').innerHTML = `<span class="tag ${freshness.cls}">${freshness.label}</span>`;
       document.getElementById('seriesThrough').textContent = state.dailySeries.throughDate || state.dailySeries.labels.at(-1) || '—';
 
-      document.getElementById('metrics').innerHTML = (state.metrics||[]).map(m=>`
+      document.getElementById('metrics').innerHTML = (state.metrics || []).map(m => `
         <div class="metric">
           <div class="label">${m.label}</div>
           <div class="value">${m.value}</div>
@@ -274,15 +302,15 @@
         </div>`).join('');
 
       renderList('sitrep', state.sitrep);
-      document.getElementById('sourceNotes').innerHTML = (state.meta.notes||[]).map(n=>`<div>• ${n}</div>`).join('');
+      document.getElementById('sourceNotes').innerHTML = (state.meta.notes || []).map(n => `<div>• ${n}</div>`).join('');
       document.getElementById('missileFoot').textContent = `Source note: ${state.dailySeries.sourceLabel || ''}`;
       document.getElementById('droneFoot').textContent = `Source note: ${state.dailySeries.sourceLabel || ''}`;
       document.getElementById('oilFoot').textContent = state.oil.note || '';
       document.getElementById('targetMissileFoot').textContent = state.latestTargetBreakdown.note || '';
       document.getElementById('targetDroneFoot').textContent = state.latestTargetBreakdown.note || '';
 
-      const sortedRows = [...(state.dailyRows||[])].sort((a,b)=> parseLogDate(b.date) - parseLogDate(a.date));
-      document.getElementById('dailyRows').innerHTML = sortedRows.map(r=>`
+      const sortedRows = [...(state.dailyRows || [])].sort((a, b) => parseLogDate(b.date) - parseLogDate(a.date));
+      document.getElementById('dailyRows').innerHTML = sortedRows.map(r => `
         <tr>
           <td>${r.date}</td>
           <td><span class="pill missile">${r.missiles ?? '—'}</span></td>
@@ -293,14 +321,14 @@
           <td>${r.assessment || '—'}</td>
         </tr>`).join('');
 
-      document.getElementById('timeline').innerHTML = (state.timeline||[]).map(t=>`<li><strong>${t.title}:</strong> ${t.body}</li>`).join('');
-      document.getElementById('scenarioProbs').innerHTML = (state.scenarioProbabilities||[]).map(s=>`
+      document.getElementById('timeline').innerHTML = (state.timeline || []).map(t => `<li><strong>${t.title}:</strong> ${t.body}</li>`).join('');
+      document.getElementById('scenarioProbs').innerHTML = (state.scenarioProbabilities || []).map(s => `
         <div class="scenario">
           <div><strong>${s.name}</strong>${s.body}</div>
           <div class="prob">${s.prob}</div>
         </div>`).join('');
-      document.getElementById('theoryEval').innerHTML = (state.theoryEvaluation||[]).map(t=>`<li><strong>${t.title}:</strong> ${t.body}</li>`).join('');
-      document.getElementById('endstate').innerHTML = (state.endstate||[]).map(t=>`<li><strong>${t.title}:</strong> ${t.body}</li>`).join('');
+      document.getElementById('theoryEval').innerHTML = (state.theoryEvaluation || []).map(t => `<li><strong>${t.title}:</strong> ${t.body}</li>`).join('');
+      document.getElementById('endstate').innerHTML = (state.endstate || []).map(t => `<li><strong>${t.title}:</strong> ${t.body}</li>`).join('');
 
       renderList('impactIranfarhang', state.impactIranfarhang);
       renderList('prepIranfarhang', state.prepIranfarhang);
@@ -312,15 +340,15 @@
 
     function renderCharts(){
       const labels = state.dailySeries.labels || [];
-      const missiles = state.dailySeries.missiles || [];
-      const drones = state.dailySeries.drones || [];
+      const missiles = (state.dailySeries.missiles || []).map(toFiniteOrNull);
+      const drones = (state.dailySeries.drones || []).map(toFiniteOrNull);
 
       kill('missile');
       charts.missile = new Chart(document.getElementById('missileChart'), {
         type:'line',
         data:{ labels, datasets:[
           {label:'Daily ballistic missiles', data:missiles, borderColor:'#ff6b6b', backgroundColor:'rgba(255,107,107,.08)', fill:true, tension:.24, borderWidth:3, pointRadius:4, spanGaps:false},
-          {label:'Trend line', data:linearTrend(missiles), borderColor:'#ffd166', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:true}
+          {label:'Trend line', data:trendLineUpToLastReal(missiles), borderColor:'#ffd166', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:false}
         ]},
         options:commonOptions
       });
@@ -330,7 +358,7 @@
         type:'line',
         data:{ labels, datasets:[
           {label:'Daily drones', data:drones, borderColor:'#ff9f43', backgroundColor:'rgba(255,159,67,.08)', fill:true, tension:.24, borderWidth:3, pointRadius:4, spanGaps:false},
-          {label:'Trend line', data:linearTrend(drones), borderColor:'#63b3ff', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:true}
+          {label:'Trend line', data:trendLineUpToLastReal(drones), borderColor:'#63b3ff', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:false}
         ]},
         options:commonOptions
       });
@@ -341,8 +369,8 @@
         data:{ labels, datasets:[
           {label:'Ballistic missiles', data:missiles, borderColor:'#63b3ff', borderWidth:3, pointRadius:4, tension:.24, spanGaps:false},
           {label:'Drones', data:drones, borderColor:'#ff9f43', borderWidth:3, pointRadius:4, tension:.24, spanGaps:false},
-          {label:'Missile trend', data:linearTrend(missiles), borderColor:'#46d7b0', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:true},
-          {label:'Drone trend', data:linearTrend(drones), borderColor:'#b084ff', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:true}
+          {label:'Missile trend', data:trendLineUpToLastReal(missiles), borderColor:'#46d7b0', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:false},
+          {label:'Drone trend', data:trendLineUpToLastReal(drones), borderColor:'#b084ff', borderDash:[8,5], pointRadius:0, borderWidth:2, tension:0, spanGaps:false}
         ]},
         options:commonOptions
       });
@@ -350,9 +378,9 @@
       kill('oil');
       charts.oil = new Chart(document.getElementById('oilChart'), {
         type:'line',
-        data:{ labels:state.oil.labels||[], datasets:[
-          {label:'Brent', data:state.oil.brent||[], borderColor:'#63b3ff', borderWidth:3, pointRadius:4, tension:.22},
-          {label:'WTI', data:state.oil.wti||[], borderColor:'#ffd166', borderWidth:3, pointRadius:4, tension:.22}
+        data:{ labels:state.oil.labels || [], datasets:[
+          {label:'Brent', data:state.oil.brent || [], borderColor:'#63b3ff', borderWidth:3, pointRadius:4, tension:.22},
+          {label:'WTI', data:state.oil.wti || [], borderColor:'#ffd166', borderWidth:3, pointRadius:4, tension:.22}
         ]},
         options:commonOptions
       });
@@ -382,9 +410,9 @@
       kill('pressure');
       charts.pressure = new Chart(document.getElementById('pressureChart'), {
         type:'line',
-        data:{ labels:(state.pressure&&state.pressure.labels)||[], datasets:[
-          {label:'Operational attrition', data:(state.pressure&&state.pressure.attrition)||[], borderColor:'#46d7b0', borderWidth:3, pointRadius:4, tension:.25},
-          {label:'Political/economic cost pressure', data:(state.pressure&&state.pressure.cost)||[], borderColor:'#ffd166', borderWidth:3, pointRadius:4, tension:.25}
+        data:{ labels:(state.pressure && state.pressure.labels) || [], datasets:[
+          {label:'Operational attrition', data:(state.pressure && state.pressure.attrition) || [], borderColor:'#46d7b0', borderWidth:3, pointRadius:4, tension:.25},
+          {label:'Political/economic cost pressure', data:(state.pressure && state.pressure.cost) || [], borderColor:'#ffd166', borderWidth:3, pointRadius:4, tension:.25}
         ]},
         options:{ ...commonOptions, scales:{ ...commonOptions.scales, y:{ ...commonOptions.scales.y, beginAtZero:true, suggestedMax:10 }}}
       });

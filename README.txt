@@ -1,15 +1,16 @@
-Iran War Dashboard corrected bundle
+Iran War Dashboard final corrected bundle
 
-Replace these files in your repo:
+Replace:
 - index.html
 - war-data.json
 
-This version fixes:
-- event log sorted by date descending
+Fixes included:
+- ISO timestamp, so freshness parses correctly
+- event log sorted newest first
 - business sections grouped into Iranfarhang and KIP
-- dynamic rendering through Mar 13
-- charts and tables driven by JSON arrays
-- null launch counts allowed after Mar 09 where no defensible full daily series exists
+- all dynamic content pulled from war-data.json
+- charts extend to Mar 13
+- trend lines stop at the last real non-null launch value instead of flying off into nonsense
 
 Important:
-The dashboard now truly includes data rows through Mar 13. The launch charts also extend through Mar 13, but dates without defensible full daily counts remain blank on purpose.
+The launch charts still show no plotted missile/drone values for Mar 10–13 because the JSON correctly leaves those as unknown, but the dashboard now handles that cleanly.
