@@ -1,16 +1,15 @@
-Iran War Dashboard Starter
+Iran War Dashboard starter bundle
 
-Files included:
+Files:
 - index.html
 - war-data.json
 - vercel.json
 
-How to use:
-1. Upload all files to the root of your GitHub repo.
-2. Import the repo into Vercel.
-3. Deploy.
-4. Edit war-data.json whenever you want to update dashboard data.
-5. Press Refresh dashboard on the site to reload war-data.json.
+Usage:
+1. Replace your repo files with these versions.
+2. Commit and push.
+3. Vercel redeploys automatically.
+4. Future updates should only require replacing war-data.json unless the UI itself changes.
 
-Important:
-This starter bundle does not include an automated backend. The refresh button will only be as current as war-data.json.
+Note:
+This version is built for manual data updates. It does not show a refresh button and does not pretend to fetch live data beyond what exists in war-data.json.
