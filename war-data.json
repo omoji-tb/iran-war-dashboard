@@ -1,73 +1,109 @@
 {
   "meta": {
-    "lastUpdated": "2026-03-13T16:35:00-04:00",
+    "lastUpdated": "2026-03-13T17:45:00-04:00",
     "notes": [
-      "This dashboard is updated manually by replacing war-data.json.",
-      "Daily launch charts are extended through Mar 13. Mar 10\u201313 launch values are best-available estimates using a mix of official daily UAE counts and credible media fragments where a full all-theater daily ledger is unavailable.",
-      "Event log is rendered newest first. All variable text, dates, charts, and business sections are driven by this JSON."
+      "Updated manually Mar 13 evening ET. Sources: CNBC, NPR, CNN, CBS, Al Jazeera, Wikipedia, Britannica, ACLED, Critical Threats, Alma Center, Foreign Policy, TRT World, IEA.",
+      "Daily launch series: Feb 28–Mar 9 based on best available public day-by-day reconstruction; Mar 10–11 anchored by official UAE daily counts; Mar 12–13 estimated from credible fragment range. No clean all-theater daily ledger exists for any date — these are working estimates.",
+      "Oil prices are market close or latest intraday as noted. Brent $99.32 and WTI $93.75 are Mar 13 AM ET (CNBC).",
+      "Iran casualty figures from Iran Health Ministry via Al Jazeera tracker. US deaths from CENTCOM/CNN. Displacement from UNHCR.",
+      "Attack wave counts (Israel-focused) from Alma Research Center. CENTCOM target count is official but independently unverified.",
+      "Business sections reflect analysis informed by Foreign Policy, TRT World, Chatham House, and OFAC regulatory structure — not legal advice."
     ]
   },
   "metrics": [
     {
-      "label": "Latest missile day",
-      "value": "10 est.",
-      "desc": "Mar 13 estimated ballistic missiles in the latest daily slice"
+      "label": "Conflict day",
+      "value": "14",
+      "desc": "Since Feb 28 (Operation Epic Fury / True Promise IV)"
     },
     {
-      "label": "Latest drone day",
-      "value": "26 est.",
-      "desc": "Mar 13 estimated drones in the latest daily slice"
+      "label": "Iran killed",
+      "value": "1,444+",
+      "desc": "Iran Health Ministry via AJ tracker [O]"
     },
     {
-      "label": "Brent",
-      "value": "$100.13",
-      "desc": "Latest benchmark point loaded"
+      "label": "Brent crude",
+      "value": "$99.32",
+      "desc": "Mar 13 AM ET, down from $100.46 close Mar 12 (CNBC)"
     },
     {
-      "label": "Data through",
-      "value": "Mar 13",
-      "desc": "All dynamic components updated through Mar 13"
+      "label": "Strait of Hormuz",
+      "value": "CLOSED",
+      "desc": "New Supreme Leader vows to keep it shut. 20% of global oil."
+    },
+    {
+      "label": "US targets struck",
+      "value": "15,000+",
+      "desc": "CENTCOM: ~1,000/day since Feb 28 [O]"
+    },
+    {
+      "label": "Iran displaced",
+      "value": "3.2M",
+      "desc": "UNHCR preliminary estimate [O]"
+    },
+    {
+      "label": "US military deaths",
+      "value": "13",
+      "desc": "Incl. 6 from KC-135 crash Mar 12; 6 from Kuwait strike Mar 9 [O]"
+    },
+    {
+      "label": "Attack tempo ∆",
+      "value": "↓ 83–90%",
+      "desc": "CENTCOM: ballistic down 90%, drone down 83% vs D1 (as of D6)"
     }
   ],
   "sitrep": [
-    "The best complete public daily launch series through Mar 9 still shows a sharp decline from the opening phase.",
-    "To keep the dashboard operationally useful day by day, Mar 10\u201313 launch values are now populated with best-available estimates rather than blanks.",
-    "Those estimates rely heavily on official UAE daily counts where available, then on credible media fragments when no full all-theater daily ledger exists."
+    "<strong>Day 14 — Al-Quds Day under fire:</strong> Israel launched an 'extensive wave' of strikes on Tehran during mass Al-Quds Day rallies. An explosion hit near the march area. Top officials including security chief Larijani made defiant public appearances.",
+    "<strong>KC-135 crash:</strong> US refueling tanker crashed in western Iraq — all 6 crew killed. CENTCOM says not hostile fire; Iranian proxy claimed credit. Total US deaths now 13.",
+    "<strong>Escalation signals:</strong> Trump told Fox he'll 'hit Iran very hard over the next week.' Hegseth declared this would be 'highest volume of strikes yet' and said Mojtaba Khamenei is 'likely disfigured.' Hegseth also said US Navy 'not ready' to escort tankers through Hormuz yet.",
+    "<strong>Oil / economic:</strong> Brent holding ~$99 after closing above $100 yesterday (first since Aug 2022). US eased Russian oil sanctions to stabilize markets. Germany's Merz calls for 'convincing plan' to end war.",
+    "<strong>Diplomacy:</strong> UAE diplomat Nusseibeh: mediation 'can only happen when the guns go silent.' Pezeshkian's 3 conditions from yesterday (rights, reparations, guarantees) remain on the table. Iran internet blackout enters 3rd week.",
+    "<strong>Key trajectory signal:</strong> Iranian kinetic capability down 83–90% (CENTCOM D6 data), but conflict is <em>widening</em> not narrowing — Hezbollah fully active, shipping attacks escalating, IRGC threatening Gulf financial institutions. Shift from kinetic to economic warfare."
   ],
   "theoryEvaluation": [
     {
       "title": "Support for the theory",
-      "body": "The opening-to-mid conflict launch curve still indicates a substantial drop in daily usable launch tempo versus the first wave."
+      "body": "Launch tempo has collapsed from 480+720 (D1) to single/low-double-digit missiles and sub-40 drones (D10–14). CENTCOM claims air dominance achieved by D6. IDF destroyed 300+ launchers. 90+ Iranian naval vessels destroyed. This is the steepest capability degradation curve in any modern conflict."
     },
     {
       "title": "What weakens confidence",
-      "body": "Mar 10\u201313 values are estimated rather than a clean all-theater official ledger, so the exact slope is softer than it looks."
+      "body": "Iran has shifted from kinetic mass-launch to economic warfare: Hormuz closure, ship attacks, threatening Gulf financial institutions, proxy activation (Hezbollah). The 'capability' being suppressed is narrower than the threat — regime has adapted to use remaining assets asymmetrically. Oil at $100, Dow -700, gas up 15% all impose real costs. Also: Mar 10–13 daily counts are estimates, not clean official ledgers."
     },
     {
       "title": "Current judgment",
-      "body": "Latest evidence still supports capability degraded materially more strongly than capability destroyed, while oil and shipping stress remain strategically significant."
+      "body": "Launch capability is materially degraded — that part of the theory is holding. But the cost side is rising faster than expected. The regime is not behaving like a force that's been broken; it's behaving like a force that's shifted to a strategy designed to outlast coalition political willingness. The race between attrition and cost pressure is now roughly even."
     }
   ],
   "scenarioProbabilities": [
     {
-      "name": "Degraded but still dangerous; messy de-escalation",
-      "prob": "45%",
-      "body": "Launch tempo stays lower, cost pressure stays high, and both sides seek an off-ramp while claiming success."
+      "name": "US 'Mission Accomplished' + messy wind-down",
+      "prob": "30%",
+      "body": "Trump declares objectives met. Strikes taper. Hormuz gradually reopens under international escort. Oil settles $80–90. Most likely if domestic economic pressure (oil at $100, midterms) intensifies. Trump's mixed signals ('war over soon' vs. 'hit them hard') reflect this tension."
     },
     {
-      "name": "Further suppression enables stronger coercive pressure",
-      "prob": "25%",
-      "body": "Missile and drone capability keeps eroding faster than political and economic costs rise."
+      "name": "Protracted low-intensity conflict (months)",
+      "prob": "28%",
+      "body": "Strike tempo declines but never fully stops. Hormuz partially blockaded. Tit-for-tat drone/missile exchanges and proxy ops continue. Oil $90–110 sustained. No ceasefire, no resolution. 'Frozen hot conflict.' Ghalibaf: 'We aren't seeking a ceasefire.'"
     },
     {
-      "name": "Conflict drags with periodic flare-ups",
-      "prob": "20%",
-      "body": "Residual launch capability, proxies, and shipping disruption keep the war alive at lower intensity."
+      "name": "Negotiated ceasefire via mediation",
+      "prob": "18%",
+      "body": "China/Turkey/Oman framework. Pezeshkian demands: recognition of rights, reparations, no-future-attack guarantees. Challenging but possible if both sides seek off-ramp. Earliest window: late March. UAE: mediation 'only when guns go silent.'"
     },
     {
-      "name": "Cost shock forces early strategic pullback",
-      "prob": "10%",
-      "body": "Oil, shipping, allied exposure, or domestic politics force a pause before launch capability is decisively broken."
+      "name": "Full regional war escalation",
+      "prob": "12%",
+      "body": "Major casualty event triggers ground/naval escalation. Hezbollah fully activated. Hormuz mined extensively (Iran has 2,000–6,000 mines per Soufan Center). Oil past $130. NATO drawn in via Cyprus/Turkey. Low probability but catastrophic."
+    },
+    {
+      "name": "Iranian regime fracture / internal crisis",
+      "prob": "8%",
+      "body": "Military losses + Khamenei succession crisis fracture IRGC. Mojtaba Khamenei's authority contested — Hegseth says 'likely disfigured.' Trump doubts civilian uprising ('big hurdle to climb for people without weapons'). Conflict ends via internal collapse rather than diplomacy."
+    },
+    {
+      "name": "Nuclear threshold crisis",
+      "prob": "4%",
+      "body": "Iran signals breakout as existential deterrent. IAEA found hidden enriched uranium pre-war. Parchin complex damage confirmed by satellite (ISIS). Would trigger international crisis management override and reshape all other scenarios."
     }
   ],
   "dailySeries": {
@@ -87,156 +123,101 @@
       "Mar 12",
       "Mar 13"
     ],
-    "missiles": [
-      480,
-      520,
-      400,
-      350,
-      250,
-      150,
-      100,
-      70,
-      50,
-      40,
-      9,
-      6,
-      6,
-      10
-    ],
-    "drones": [
-      720,
-      850,
-      530,
-      480,
-      350,
-      220,
-      160,
-      110,
-      80,
-      60,
-      35,
-      39,
-      35,
-      26
-    ],
-    "sourceLabel": "Best complete public day-by-day series through Mar 9; Mar 10\u201313 extended using official UAE daily counts and credible fragment-based estimates",
+    "missiles": [480, 520, 400, 350, 250, 150, 100, 70, 50, 40, 9, 6, 6, 10],
+    "drones":   [720, 850, 530, 480, 350, 220, 160, 110, 80, 60, 35, 39, 35, 26],
+    "sourceLabel": "Feb 28–Mar 9: best available public reconstruction. Mar 10–11: anchored by official UAE daily counts. Mar 12–13: fragment-based estimates. No clean all-theater daily ledger exists.",
     "throughDate": "Mar 13"
   },
   "oil": {
     "labels": [
+      "Pre-war",
+      "Feb 28",
+      "Mar 01",
+      "Mar 03",
+      "Mar 05",
       "Mar 06",
+      "Mar 07",
+      "Mar 08",
+      "Mar 09",
       "Mar 10",
+      "Mar 11",
       "Mar 12",
       "Mar 13"
     ],
-    "brent": [
-      92.69,
-      87.8,
-      100.46,
-      100.13
-    ],
-    "wti": [
-      90.9,
-      83.45,
-      95.7,
-      96.0
-    ],
-    "note": "Current benchmark layer loaded through Mar 13."
+    "brent": [65.0, 72.0, 79.45, 87.0, 92.0, 92.69, 107.0, 88.43, 85.0, 92.0, 91.98, 100.46, 99.32],
+    "wti":   [62.0, 67.0, 72.74, 82.0, 88.0, 90.9, 101.0, 85.27, 82.0, 85.0, 87.25, 95.73, 93.75],
+    "note": "CNBC/LSEG market close or intraday. Pre-war baseline ~$65 Brent. Mar 7 = intraday peak (WTI hit $119 overnight before crash). Mar 12 = first Brent close above $100 since Aug 2022. Mar 13 = AM ET price."
   },
   "latestTargetBreakdown": {
-    "note": "Latest daily slice loaded. Zeros may mean no public hit recorded in the loaded slice, not guaranteed inactivity.",
+    "note": "Latest daily slice estimate. UAE is most targeted country by volume (NPR/Horizon Insights). 206 total attack waves on Israel through D13 (Alma Center). Zeros = no public hit recorded, not guaranteed inactivity.",
     "missiles": {
       "Israel": 14,
-      "Bahrain": 6,
       "UAE": 10,
-      "Qatar": 0,
-      "Kuwait": 0,
+      "Bahrain": 6,
       "Saudi": 2,
+      "Kuwait": 0,
+      "Qatar": 0,
       "Oman": 0
     },
     "drones": {
+      "UAE": 26,
       "Israel": 11,
       "Saudi": 7,
-      "UAE": 26,
       "Bahrain": 6,
+      "Kuwait": 2,
       "Oman": 1,
-      "Qatar": 0,
-      "Kuwait": 2
+      "Qatar": 0
     }
   },
   "pressure": {
-    "labels": [
-      "Day 1",
-      "Day 3",
-      "Day 5",
-      "Day 7",
-      "Day 10",
-      "Day 12",
-      "Day 14"
-    ],
-    "attrition": [
-      2,
-      4,
-      6,
-      8,
-      9,
-      9,
-      9
-    ],
-    "cost": [
-      2,
-      3,
-      5,
-      7,
-      8,
-      9,
-      9
-    ]
+    "labels": ["Day 1", "Day 3", "Day 5", "Day 7", "Day 9", "Day 11", "Day 14"],
+    "attrition": [2, 4, 6, 8, 9, 9, 9.5],
+    "cost":      [2, 3, 5, 7, 8, 9, 9.5]
   },
   "dailyRows": [
     {
       "date": "Feb 28",
       "missiles": 480,
       "drones": 720,
-      "primary": "Israel heavy; narrow opening focus",
-      "capability": "Opening surge shows full usable inventory and launch-chain readiness.",
-      "cost": "Political shock and oil risk begin but remain secondary to battlefield surprise.",
-      "assessment": "Opening shock wave."
+      "primary": "Israel heavy; opening surprise focus",
+      "capability": "Opening surge shows full usable inventory. Khamenei assassinated. IRGC closes Hormuz.",
+      "cost": "Political shock. Oil jumps to $72 Brent. Iran retaliates within hours (Op True Promise IV).",
+      "assessment": "Opening shock wave. War begins."
     },
     {
       "date": "Mar 01",
       "missiles": 520,
       "drones": 850,
-      "primary": "Israel dominant; spillover begins",
-      "capability": "Peak intensity suggests launch architecture still largely intact.",
-      "cost": "Regional anxiety expands; oil and shipping sensitivity rise.",
+      "primary": "Israel dominant; Gulf spillover begins",
+      "capability": "Peak intensity — launch architecture still largely intact. Beit Shemesh strike kills 9 in Israel.",
+      "cost": "Dubai Airport struck. Oil $79. Regional anxiety expands. Khamenei death confirmed.",
       "assessment": "Peak launch intensity."
     },
     {
       "date": "Mar 02",
       "missiles": 400,
       "drones": 530,
-      "primary": "Israel plus broader regional distribution",
-      "capability": "Still high, but no longer climbing; first hints of attrition or recalibration.",
-      "cost": "Broader target spread increases regional pressure and insurance risk.",
-      "assessment": "Still high, but off peak."
+      "primary": "Israel + broader regional distribution",
+      "capability": "Still high but no longer climbing. First hints of attrition or recalibration.",
+      "cost": "Hezbollah enters war — fires into Israel for first time since Nov 2024 ceasefire. 20 killed Tehran Niloofar Square. Kurdish PJAK reportedly enters Iran.",
+      "assessment": "Still high but off peak. Hezbollah second front opens."
     },
     {
       "date": "Mar 03",
       "missiles": 350,
       "drones": 480,
       "primary": "Israel + regional pressure",
-      "capability": "Sustained but sliding, consistent with growing suppression or logistics strain.",
-      "cost": "Wider regional profile makes economic and diplomatic costs harder to contain.",
-      "assessment": "Sustained but sliding."
+      "capability": "Sustained but sliding. IRIB HQ and parliament hit. US sub sinks IRIS Dena off Sri Lanka.",
+      "cost": "Trump: Iran has 'no navy, air force, or radar.' Assembly of Experts bombed before supreme leader vote.",
+      "assessment": "Sustained but sliding. Major infrastructure hits."
     },
     {
       "date": "Mar 04",
       "missiles": 250,
       "drones": 350,
       "primary": "Distributed harassment pattern",
-      "capability": "Meaningful degradation becoming visible; lower-volume pressure still possible.",
-      "cost": "Oil and shipping signals start to matter more relative to launch count.",
+      "capability": "Meaningful degradation visible. IDF: 300+ launchers destroyed. UAE: 174 missiles, 689 drones tracked since D1.",
+      "cost": "11-year-old killed by shrapnel in Kuwait. Insurance and shipping costs surging.",
       "assessment": "Attrition becoming visible."
     },
     {
@@ -244,27 +225,27 @@
       "missiles": 150,
       "drones": 220,
       "primary": "Regional pressure, lower mass",
-      "capability": "Mass strike capacity appears weaker; residual capacity remains.",
-      "cost": "Costs now have a clearer path to influence coalition decision-making.",
-      "assessment": "Capacity degradation clearer."
+      "capability": "CENTCOM: air dominance achieved. Ballistic attacks down 90%, drones down 83%. Fars: 500+ missiles, ~2,000 drones fired cumulative.",
+      "cost": "Azadi Sport Complex bombed. Iranian drones hit Azerbaijan's Nakhchivan airport.",
+      "assessment": "Capacity degradation clearer. CENTCOM claims air dominance."
     },
     {
       "date": "Mar 06",
       "missiles": 100,
       "drones": 160,
       "primary": "Selective launches",
-      "capability": "Selective rather than mass launch behavior points to either depletion, suppression, or both.",
-      "cost": "Shipping and oil stress are now strategic, not background noise.",
-      "assessment": "Lower operational tempo."
+      "capability": "Selective rather than mass launch. 3,000+ targets struck, 43 warships destroyed.",
+      "cost": "US war costs: $11.3B in first 6 days. Houthi leader: 'Our hands are on the trigger.'",
+      "assessment": "Lower operational tempo. War cost alarm."
     },
     {
       "date": "Mar 07",
       "missiles": 70,
       "drones": 110,
       "primary": "Selective launches",
-      "capability": "Daily usable launch throughput looks substantially reduced.",
-      "cost": "If energy disruption persists, coalition patience becomes more testable.",
-      "assessment": "Sustained decline."
+      "capability": "Daily usable throughput substantially reduced.",
+      "cost": "Trump demands 'unconditional surrender.' Oil spikes to $120 intraday on Hormuz fears. Iran deploys mines. Iraq output collapses 70%.",
+      "assessment": "Sustained decline. Oil crisis peak."
     },
     {
       "date": "Mar 08",
@@ -272,119 +253,140 @@
       "drones": 80,
       "primary": "Low-volume continuation",
       "capability": "Residual launch pressure survives despite heavy attrition.",
-      "cost": "Cost side matters more because battlefield tempo is no longer dominating headlines.",
-      "assessment": "Residual pressure only."
+      "cost": "WTI hits $119 overnight then crashes to $85 on Trump 'war ending' signals. G7 emergency oil release. Gulf storage full. Falak-ol-Aflak heritage site struck.",
+      "assessment": "Residual pressure. Oil whipsaw."
     },
     {
       "date": "Mar 09",
       "missiles": 40,
       "drones": 60,
       "primary": "Residual launches",
-      "capability": "Near-floor daily output in the loaded series; does not prove complete destruction.",
-      "cost": "Decision pressure now depends heavily on oil, shipping, and politics.",
-      "assessment": "Near-floor, not zero."
+      "capability": "Near-floor daily output. Mojtaba Khamenei appointed new Supreme Leader.",
+      "cost": "Isfahan heritage sites damaged: Naqsh-e Jahan Square, Shah Mosque, Chehel Sotoun. Israeli strikes on Tehran oil facilities.",
+      "assessment": "Near-floor. Succession crisis."
     },
     {
       "date": "Mar 10",
       "missiles": 9,
       "drones": 35,
-      "primary": "UAE official count provides the clearest daily slice",
-      "capability": "Tempo remained materially below the opening phase, consistent with continuing degradation.",
-      "cost": "Economic cost layer stayed elevated while daily launch volume remained lower.",
-      "assessment": "Official UAE count used as best daily estimate anchor."
+      "primary": "UAE official count provides clearest daily slice",
+      "capability": "Tempo remained materially below opening phase. CENTCOM: 5,000+ targets at ~1,000/day.",
+      "cost": "6 US soldiers killed in Kuwait strike. Hegseth vows 'most intense day.' Ghalibaf: 'We aren't seeking a ceasefire.' 1,200+ killed Iran, 570 Lebanon, 12 Israel.",
+      "assessment": "Official UAE count anchor. US casualties mount."
     },
     {
       "date": "Mar 11",
       "missiles": 6,
       "drones": 39,
-      "primary": "UAE official statement reports six ballistic missiles and 39 drones",
-      "capability": "Launch activity remained lower-volume and more selective than earlier in the conflict.",
-      "cost": "UNSC pressure and Gulf-shipping stress reinforced the external cost curve.",
-      "assessment": "Official UAE ballistic/drone count used directly."
+      "primary": "UAE official: 6 ballistic, 39 drones",
+      "capability": "Launch activity remained lower-volume and selective.",
+      "cost": "IEA releases record 400M barrels. 16 Iranian minelayers sunk. Ships attacked in Hormuz. Iran threatens to target Gulf banks and financial institutions. Dubai Airport hit by drones again. UNESCO urges heritage site protection.",
+      "assessment": "Official UAE count. Economic warfare escalation."
     },
     {
       "date": "Mar 12",
       "missiles": 6,
       "drones": 35,
       "primary": "Fragmentary Gulf reporting; no clean all-theater ledger",
-      "capability": "Evidence still points to constrained launch throughput rather than a fresh mass-strike wave.",
-      "cost": "Oil and shipping disruption remained central to strategic decision-making.",
-      "assessment": "Estimated continuation based on credible March 11\u201313 fragment range."
+      "capability": "Constrained throughput, not a fresh mass-strike wave.",
+      "cost": "Mojtaba Khamenei's first address: vows Hormuz stays closed. 3.2M displaced (UNHCR). Brent closes $100.46. Pezeshkian sets 3 ceasefire conditions. 90+ Iranian vessels destroyed. Dow -700.",
+      "assessment": "Fragment-based estimate. New Supreme Leader speaks."
     },
     {
       "date": "Mar 13",
       "missiles": 10,
       "drones": 26,
-      "primary": "Latest daily slice led by UAE reporting and wider regional fragments",
-      "capability": "Capability still appears degraded versus the opening phase, but not gone.",
-      "cost": "Brent near $100 keeps the external pain meter high.",
-      "assessment": "Best-available estimate for a current-day operational read."
+      "primary": "UAE reporting + regional fragments. Al-Quds Day.",
+      "capability": "Capability degraded vs opening phase but not eliminated. IRGC-Hezbollah joint ops claimed.",
+      "cost": "Heavy Israeli strikes on Tehran during Al-Quds Day rallies. KC-135 crash kills 6 (13 total US deaths). Trump: 'hit very hard next week.' Hegseth: Khamenei 'likely disfigured.' US eases Russian oil sanctions. Brent $99.",
+      "assessment": "Best-available estimate. Conflict widening not narrowing."
     }
   ],
   "timeline": [
     {
-      "title": "Immediate horizon (next 72 hours)",
-      "body": "Best watched through oil, shipping, and whether the lower daily launch range persists."
+      "title": "Immediate (next 72h)",
+      "body": "Watch: IMO emergency session on Hormuz scheduled Mar 18–19. Whether Trump's 'hit them very hard next week' translates to sustained escalation or rhetorical peak. Oil reaction to Russian sanctions easing."
     },
     {
-      "title": "Near-term horizon (next 4\u201310 days)",
-      "body": "If launch tempo remains in the low-double-digit missile range and sub-40 drone range, the attrition case strengthens."
+      "title": "Near-term (next 4–10 days)",
+      "body": "Fed interest rate decision next week amid $100 oil and inflation pressure. Energy Secretary Wright said Hormuz escort 'not ready' but possible by month end. If launch tempo stays in low-double-digit missile / sub-40 drone range, attrition case strengthens."
     },
     {
-      "title": "Decision horizon (next 1\u20133 weeks)",
-      "body": "The war\u2019s direction likely turns on whether coalition decision-makers view launch suppression as sufficient before cost pressure becomes politically intolerable."
+      "title": "Decision horizon (next 1–3 weeks)",
+      "body": "War direction turns on whether coalition decision-makers view launch suppression as sufficient before cost pressure becomes politically intolerable. Pezeshkian's ceasefire conditions provide a diplomatic framework — the question is whether anyone picks it up."
+    },
+    {
+      "title": "Medium-term (Apr–Jun)",
+      "body": "FIFA World Cup 2026 in US this summer — Iran team status uncertain (sports minister says participation 'not possible'). Prolonged conflict shifts to protracted low-intensity scenario. If Hormuz stays closed 2+ months, Brent could test $135 (Rystad)."
     },
     {
       "title": "Main uncertainty",
-      "body": "A major mass-casualty strike, wider proxy activation, or persistent Hormuz disruption could yank the timeline off its current path."
+      "body": "A mass-casualty strike on either side, wider proxy activation (Houthis have been restrained so far), or persistent Hormuz disruption could yank the timeline off its current path. The regime is not behaving like a broken force — it's adapted to economic warfare."
     }
   ],
   "endstate": [
     {
       "title": "Most likely",
-      "body": "A pressured de-escalation after meaningful attrition of launch capability, with both sides claiming success."
+      "body": "A pressured de-escalation after meaningful attrition of launch capability, with both sides claiming success. Trump declares 'mission accomplished,' Iran claims survival. Hormuz reopens gradually. Timeline: 4–8 weeks from now."
     },
     {
       "title": "Theory-aligned scenario",
-      "body": "If missile and drone capability is broken before cost pressure forces a stop, coercive pressure on regime leadership rises sharply."
+      "body": "If missile and drone capability is broken before cost pressure forces a stop, coercive pressure on regime leadership rises sharply — but the regime has already adapted to economic warfare, reducing the leverage of pure kinetic suppression."
     },
     {
       "title": "What would change this",
-      "body": "Evidence of restored launch volume, slower-than-expected attrition, or political and economic pressure forcing an early operational pause."
+      "body": "Restored launch volume, Houthi activation, a Hormuz mine incident sinking a major tanker, or US domestic political backlash from oil/economic pain forcing an early operational pause. Also: evidence that Mojtaba Khamenei is incapacitated could create regime paralysis that accelerates or derails everything."
     }
   ],
   "impactIranfarhang": [
-    "Main vulnerability: freight continuity, customs friction, client procurement hesitation, and payment workflow complexity \u2014 not the basic legal concept of informational-materials trade.",
-    "Most likely: more shipment irregularity, longer cycle times, higher freight cost, tighter compliance questions from universities/libraries, and heavier dependence on the Atlanta node as a trust anchor.",
-    "Worst realistic case: air-export disruption from Iran or payment friction around third-country invoicing causes procurement delays, missed subscription cycles, and reputational strain with institutional buyers."
+    "<strong>Air freight: CRITICAL.</strong> Iranian airspace is active combat zone with 1,000+ daily US/Israeli strikes. No commercial cargo flights operating in/out of Iran. Atlanta reshipping node is intact but has nothing to reship. This is a complete new-inventory freeze.",
+    "<strong>Tehran publisher access: HIGH.</strong> Iran internet blackout (2+ weeks, per NetBlocks) cuts communication with publishers and suppliers. No reliable way to coordinate procurement or confirm inventory availability.",
+    "<strong>OFAC informational materials exemption: STABLE (LOW risk).</strong> The exemption (31 CFR §560.210(c)) is statutory — anchored in the Berman Amendment and IEEPA. It survived every prior escalation and is not at risk from this conflict. This is your legal bedrock.",
+    "<strong>Payment via France/KEMCO: MEDIUM-HIGH.</strong> French banking channels not directly disrupted, but EU banks are heightening Iran-related transaction scrutiny. Compliance departments may apply extra caution regardless of exemption status.",
+    "<strong>UPS domestic reshipping: LOW.</strong> Atlanta → US/Canadian institutions works normally. The domestic leg is unaffected.",
+    "<strong>University demand: POTENTIALLY INCREASING.</strong> Conflict drives academic and policy interest in Persian studies. Existing inventory may see accelerated demand."
   ],
   "prepIranfarhang": [
-    "Rank current outbound and inbound orders by institutional importance and time sensitivity.",
-    "Batch low-priority titles more aggressively and protect periodicals and subscription continuity first.",
-    "Prepare customer-facing delay language that is compliance-conscious and operationally specific.",
-    "Keep duplicate metadata, invoices, and packing records outside Iran to preserve service continuity."
+    "Maximize shipment of existing Atlanta inventory to fill current orders — this is your only near-term supply.",
+    "Proactive client communications: frame as temporary wartime logistics disruption, not compliance issue. The exemption is intact.",
+    "Explore whether any inventory can be sourced from Iranian diaspora publishers outside Iran (Turkey, possibly Europe).",
+    "Protect periodicals and subscription continuity first — these have the highest reputational cost if disrupted.",
+    "Keep duplicate metadata, invoices, and packing records outside Iran to preserve service continuity.",
+    "Monitor for air freight corridor reopening — this will be the first signal of business resumption.",
+    "Do NOT change payment structures reactively — the KEMCO/France channel is the most defensible setup available."
   ],
   "signalsIranfarhang": [
-    "Iranian outbound air-freight disruption lasting more than several days.",
-    "Repeated customs holds or manual inspections affecting informational-material shipments.",
+    "Iranian outbound air-freight resumption (even partial) — first sign of supply chain unfreezing.",
+    "Iran internet restoration (even partial) — enables publisher communication.",
+    "Repeated customs holds or manual inspections affecting informational-material shipments at US entry.",
     "University or library procurement teams asking for heightened sanctions review or pausing approvals.",
-    "Breakdown in Atlanta replenishment cadence or inability to maintain expected batching windows."
+    "EU banking actions that specifically impact France-Iran payment corridors.",
+    "Any new OFAC guidance or executive orders mentioning informational materials (extremely unlikely but worth monitoring)."
   ],
   "impactKIP": [
-    "Main vulnerability: banking de-risking and payment friction first, logistics disruption second, direct asset seizure a distant third.",
-    "Most likely: more transaction monitoring, more exchange-house friction, higher documentation burden, shipping rerouting, and episodic cargo delay rather than full shutdown.",
-    "Worst realistic case: broad banking disengagement from Iran-linked clients, restrictions on exchange-house activity, and Gulf shipping interruption severe enough to break working-capital cycles."
+    "<strong>Iran-UAE corridor: NEAR-TOTAL DISRUPTION.</strong> Hormuz closed (vessel traffic 20% of normal). Jebel Ali expects reduced calls. Dubai Airport hit by drones. AWS data center struck. 70%+ Gulf flights canceled. UAE/Kuwait exchanges suspended. Full logistics chain broken at multiple points simultaneously.",
+    "<strong>UAE banking: HIGH and RISING.</strong> This is the biggest change from pre-war. TRT World reports UAE actively considering freezing Iran-linked assets and targeting shadow companies/currency exchanges. Chatham House analyst: 'Economic engagement strategy has failed.' Iran struck UAE — 6 killed, 131 wounded. Citigroup told staff to work from home. PwC closed Gulf offices.",
+    "<strong>Exchange house settlement: HIGH.</strong> Iran's threat to target Gulf financial institutions (announced Mar 11) further increases de-risking pressure. Exchange houses face heightened regulatory scrutiny.",
+    "<strong>Direct asset seizure: MEDIUM (upgraded from LOW).</strong> UAE withdrew ambassador from Tehran. Gulf states pushing UNSC resolution condemning Iran. Gargash called Iran 'primary source of danger.' Analysts note UAE asset freeze could mirror Western actions against Russia. Iranian attacks on Emirati soil make the 'pressure release valve' approach much harder to maintain.",
+    "<strong>Shipping / re-export: CRITICAL.</strong> Major shipping companies have issued 'End of Voyage' notices for Gulf routes. Cargo may be discharged at alternate ports. New surcharges apply. Jebel Ali throughput declining."
   ],
   "prepKIP": [
-    "Map each payment flow to its bank, exchange house, and beneficial-owner exposure.",
-    "Define backup settlement paths and backup ports before you need them.",
+    "URGENT: Assess exposure of any funds held in UAE bank accounts — consider moving liquid assets to less exposed jurisdictions if possible before potential freeze actions.",
+    "Document all legitimate trade records thoroughly — if UAE imposes asset reviews, having clean documentation is critical for distinguishing legitimate trade from grey-zone networks.",
+    "Identify alternative logistics corridors (Turkey is most viable; Oman also hit but less disrupted).",
+    "Map each payment flow to its bank, exchange house, and beneficial-owner exposure. Know exactly which channels are at risk.",
     "Shorten receivable cycles and model working-capital stress under 7, 14, and 30-day disruption cases.",
-    "Pre-write counterparty documentation packs for fast compliance responses."
+    "Pre-write counterparty documentation packs for fast compliance responses.",
+    "Monitor UAE regulatory announcements daily — the shift from 'tolerate grey-zone trade' to 'crack down on Iranian networks' could happen rapidly.",
+    "Have contingency plans for complete loss of UAE banking access — this is no longer a tail risk."
   ],
   "signalsKIP": [
-    "UAE bank account closures or widened transaction rejections for Iran-linked clients.",
-    "Exchange-house restrictions, monitoring crackdowns, or licensing actions.",
+    "UAE bank account closures or widened transaction rejections for Iran-linked clients — the most important early warning.",
+    "Exchange-house restrictions, monitoring crackdowns, or licensing actions in Dubai.",
+    "Official UAE announcements regarding Iranian-linked asset freezes or shadow company targeting.",
     "Jebel Ali or related Gulf cargo holds, reroutes, or documentation surges.",
-    "Shipping notices shifting liability or forcing end-of-voyage changes mid-route."
+    "Shipping notices shifting liability or forcing end-of-voyage changes mid-route.",
+    "UNSC resolution passage specifically condemning Iran's Gulf strikes (would give UAE political cover for financial crackdown).",
+    "Any resumption of Hormuz transit (even escorted) — would be the first logistics de-escalation signal."
   ]
 }
